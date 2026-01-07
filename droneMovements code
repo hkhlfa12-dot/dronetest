@@ -1,0 +1,54 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class DroneMovementVR : MonoBehaviour
+{
+    [Header("References")]
+    public Transform cameraTransform;
+    private CharacterController characterController;
+
+    [Header("Movement Settings")]
+    public float horizontalSpeed = 5f;
+    public float verticalSpeed = 3f;
+
+    [Header("Input Actions")]
+    public InputActionProperty moveAction;     // Joystick gauche
+    public InputActionProperty verticalAction; // Joystick droit (Y)
+
+    void Start()
+    {
+        characterController = GetComponent<CharacterController>();
+    }
+
+    void Update()
+    {
+        HandleHorizontalMovement();
+        HandleVerticalMovement();
+    }
+
+    void HandleHorizontalMovement()
+    {
+        Vector2 input = moveAction.action.ReadValue<Vector2>();
+
+        // Direction basée sur le regard
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 moveDirection = forward * input.y + right * input.x;
+        characterController.Move(moveDirection * horizontalSpeed * Time.deltaTime);
+    }
+
+    void HandleVerticalMovement()
+    {
+        float verticalInput = verticalAction.action.ReadValue<float>();
+
+        Vector3 verticalMove = Vector3.up * verticalInput * verticalSpeed * Time.deltaTime;
+        characterController.Move(verticalMove);
+    }
+}
