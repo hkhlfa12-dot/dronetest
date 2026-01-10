@@ -11,8 +11,8 @@ Integrate Cesium for Unity for real-world location data (Paris).
 Implement realistic drone physics and controls.
 (Upcoming) Integrate Meta Quest 2 for full standalone VR immersion.
 
-fichiers :
+Nos fichiers :
 
-Nous présentons ici notre projet de réalité virtuel. Notre projet est "dronefinal" et le code "dronefinalcode"
+Nous présentons ici notre projet de réalité virtuel. Notre fichier pour ce projet est le "dronefinal" et le code "dronefinalcode".
 
 Nous avons créé un décor avec des immeubles et ajouté un drône capable de se deplacer verticalement (haut et bas) et latéralement (gauche et droite)
